@@ -19,10 +19,10 @@ export default class App extends Component {
   }
 
   getStores = async () => {
-    axios.get('http://localhost:5000/api/v1/stores')
+    axios.post('http://localhost:5000/api/v1/stores', {address: this.state.address})
         .then(response => {
           console.log(response.data.data[0])
-          if(!!response.data.success){
+          if(!!response.data.success && response.data.count){
             const coordinates = response.data.data[0].location.coordinates;
             console.log(coordinates)
             const tempArray = [];
@@ -31,6 +31,9 @@ export default class App extends Component {
             }
             console.log("this is ok")
             this.setState({coordinates: tempArray, origin: [coordinates[0], coordinates[1]], enableMap: true}, () => this.loadMap(this.state))
+          }
+          else {
+            this.setState({enableMap: false})
           }
         });
   }

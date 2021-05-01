@@ -5,6 +5,6 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(getStores)
+  .post(getStores)
 
 module.exports = router;

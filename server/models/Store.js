@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
 const StoreSchema = new mongoose.Schema({
+  loc: {
+    type: String
+  },
   location: {
-    loc: {
-      type: String,
-      enum: ['Polygon']
-    },
     type: {
       type: String,
       enum: ['Polygon']
